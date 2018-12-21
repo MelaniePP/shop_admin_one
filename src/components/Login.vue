@@ -48,8 +48,7 @@ export default {
             data: this.form
           }).then(res => {
             if (res.data.meta.status === 200) {
-              this.$message.success(res.data.meta.msg)
-              console.log(res.data.data.token)
+              this.$message.success('登录成功')
               localStorage.setItem('token', res.data.data.token)
               this.$router.push('/home')
             } else {

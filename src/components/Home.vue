@@ -10,7 +10,7 @@
     </div>
     <div class="logout">
       <span>欢迎光临</span>
-      <a href="javascript:;">退出</a>
+      <a href="javascript:;" @click="logout">退出</a>
     </div>
   </el-header>
   <el-container>
@@ -22,10 +22,26 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    logout() {
+      this.$confirm('您确定要退出吗？', '温馨提示', {
+        type: 'warning'
+      })
+        .then(() => {
+          localStorage.removeItem('token')
+          this.$router.push('/login')
+          this.$message.success('退出成功')
+        })
+        .catch(() => {
+          this.$message.info('取消退出')
+        })
+    }
+  }
+}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .home {
   height: 100%;
 }
@@ -52,6 +68,9 @@ export default {}
     width: 180px;
     line-height: 60px;
     text-align: center;
+    a {
+      color: orangered;
+    }
   }
 }
 .el-aside {

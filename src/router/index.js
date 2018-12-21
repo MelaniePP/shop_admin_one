@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
   // 每一次路由跳转之前都会执行该函数
   let token = localStorage.getItem('token')
   // console.log(to)
-  if (to.path === '/') {
+  if (to.path === '/login') {
     next()
     return
   }
@@ -35,6 +35,7 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     next('/login')
+    console.log('asdfsadf')
   }
 })
 
